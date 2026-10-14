@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terraform Compute Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div>
+        <p class="kicker">Provisioning · Terraform</p>
+        <h1>Compute Explorer</h1>
+        <p class="lede">Set the same intent — a VM or an autoscaling group — then see how AWS, Azure, and GCP name the resources, size CPU/RAM/disk, and handle instance lifecycle.</p>
+      </div>
+      <div class="clouds" role="tablist" aria-label="Cloud">
+        <button class="cloud" data-cloud="aws" aria-selected="true">AWS EC2</button>
+        <button class="cloud" data-cloud="azure">Azure VM</button>
+        <button class="cloud" data-cloud="gcp">Google Compute</button>
+        <button class="cloud" data-cloud="compare">Compare</button>
+      </div>
+    </header>
+
+    <section class="intent" id="intent-panel">
+      <label class="field">
+        <span>Mode</span>
+        <select id="mode">
+          <option value="vm">Single virtual machine</option>
+          <option value="asg">Autoscaling group</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Shape</span>
+        <select id="shape"></select>
+      </label>
+      <label class="field grow">
+        <span>Root / OS disk <em id="disk-label">30 GB</em></span>
+        <input id="disk" type="range" min="8" max="200" step="1" value="30" />
+      </label>
+      <label class="field">
+        <span>Disk type</span>
+        <select id="disk-type"></select>
+      </label>
+      <label class="field">
+        <span>Region</span>
+        <select id="region"></select>
+      </label>
+    </section>
+
+    <section class="lifecycle-bar" id="lifecycle-controls">
+      <span class="bar-label">Terraform lifecycle</span>
+      <label><input type="checkbox" id="cbd" /> create_before_destroy</label>
+      <label><input type="checkbox" id="prevent" /> prevent_destroy</label>
+      <label><input type="checkbox" id="ignore-ami" /> ignore_changes (image)</label>
+      <label class="asg-only"><input type="number" id="min" min="0" max="20" value="1" /> min</label>
+      <label class="asg-only"><input type="number" id="desired" min="0" max="20" value="2" /> desired</label>
+      <label class="asg-only"><input type="number" id="max" min="1" max="20" value="4" /> max</label>
+      <label class="asg-only"><input type="number" id="cpu" min="10" max="90" value="50" /> CPU target %</label>
+    </section>
+
+    <main class="grid" id="main-grid">
+      <article class="card diagram-card">
+        <h2 id="diagram-title">What you are creating</h2>
+        <p class="hint" id="diagram-hint"></p>
+        <div class="machine" id="machine"></div>
+        <div class="states" id="states"></div>
+        <p class="insight" id="apply-insight"></p>
+      </article>
+
+      <article class="card hcl-card">
+        <div class="hcl-head">
+          <h2>Terraform</h2>
+          <button type="button" id="copy">Copy</button>
+        </div>
+        <pre><code id="hcl"></code></pre>
+      </article>
+
+      <article class="card notes-card">
+        <h2>Pattern to notice</h2>
+        <div id="notes"></div>
+      </article>
+    </main>
+
+    <section class="compare" id="compare-view" hidden>
+      <table>
+        <thead>
+          <tr>
+            <th>Concern</th>
+            <th>AWS</th>
+            <th>Azure</th>
+            <th>GCP</th>
+          </tr>
+        </thead>
+        <tbody id="compare-body"></tbody>
+      </table>
+      <div class="compare-notes" id="compare-notes"></div>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

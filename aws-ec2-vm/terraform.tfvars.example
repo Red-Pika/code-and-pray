@@ -1,0 +1,6 @@
+region        = "ap-southeast-1"
+name          = "app-vm"
+instance_type = "t3.medium"
+disk_size_gb  = 30
+disk_type     = "gp3"
+ssh_cidr      = "0.0.0.0/0"

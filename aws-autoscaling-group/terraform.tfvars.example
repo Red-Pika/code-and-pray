@@ -1,0 +1,8 @@
+region           = "ap-southeast-1"
+name             = "app"
+instance_type    = "t3.medium"
+disk_size_gb     = 30
+min_size         = 1
+desired_capacity = 2
+max_size         = 4
+cpu_target       = 50

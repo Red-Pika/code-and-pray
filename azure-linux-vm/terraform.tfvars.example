@@ -1,0 +1,8 @@
+subscription_id = "00000000-0000-0000-0000-000000000000"
+location        = "Southeast Asia"
+name           = "app"
+vm_size        = "Standard_B2s"
+disk_size_gb   = 30
+disk_type      = "Premium_LRS"
+admin_username = "azureuser"
+ssh_public_key = "ssh-ed25519 AAAA... your-key"

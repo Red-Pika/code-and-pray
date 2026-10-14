@@ -1,0 +1,8 @@
+project_id    = "your-gcp-project-id"
+region        = "asia-southeast2"
+name          = "app"
+machine_type  = "e2-medium"
+disk_size_gb  = 30
+min_replicas  = 1
+max_replicas  = 4
+cpu_target    = 0.5

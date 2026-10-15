@@ -26,7 +26,8 @@ resource "google_billing_budget" "monthly" {
   display_name = "${var.project_id}-monthly-budget"
   budget_filter { projects = ["projects/${var.project_id}"] }
   amount {
-    specified_amount { currency_code = "USD"
+    specified_amount {
+      currency_code = "USD"
     units = tostring(floor(var.budget_amount_usd))
   } }
   threshold_rules {

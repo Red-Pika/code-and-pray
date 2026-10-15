@@ -28,8 +28,8 @@ resource "azurerm_storage_account" "this" {
   public_network_access_enabled = false
 }
 resource "azurerm_storage_container" "this" {
-  name = "private-data"
-  storage_account_id = azurerm_storage_account.this.id
+  name                  = "private-data"
+  storage_account_name  = azurerm_storage_account.this.name
   container_access_type = "private"
 }
 output "storage_account_name" { value = azurerm_storage_account.this.name }

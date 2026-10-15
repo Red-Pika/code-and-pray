@@ -13,9 +13,10 @@ variable "name" {
   type = string
   default = "starterstorage"
   }
-resource "azurerm_resource_group" "this" { name = "${var.name}-rg"
+resource "azurerm_resource_group" "this" {
+  name = "${var.name}-rg"
   location = var.location
-  }
+}
 resource "azurerm_storage_account" "this" {
   name = var.name
   resource_group_name = azurerm_resource_group.this.name

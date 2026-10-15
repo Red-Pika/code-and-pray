@@ -5,15 +5,18 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1"
 }
 variable "vpc_id" { type = string }
 variable "customer_gateway_public_ip" { type = string }
-variable "customer_gateway_bgp_asn" { type = number
+variable "customer_gateway_bgp_asn" {
+  type = number
   default = 65000
 }
-variable "static_routes_only" { type = bool
+variable "static_routes_only" {
+  type = bool
   default = true
 }
 resource "aws_vpn_gateway" "this" {

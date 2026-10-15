@@ -5,9 +5,11 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1" }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-app" }
 resource "aws_kms_key" "this" {
   description = "KMS key for ${var.name}"
@@ -21,8 +23,7 @@ resource "aws_kms_alias" "this" {
 }
 resource "aws_secretsmanager_secret" "this" {
   name = "${var.name}/application"
-  description = "Application secret container
-  secret value is intentionally not managed here"
+  description = "Application secret container secret value is intentionally not managed here"
   kms_key_id = aws_kms_key.this.arn
 }
 output "kms_key_arn" { value = aws_kms_key.this.arn }

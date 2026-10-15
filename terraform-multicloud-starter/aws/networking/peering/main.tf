@@ -5,15 +5,18 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1"
 }
 variable "requester_vpc_id" { type = string }
 variable "accepter_vpc_id" { type = string }
-variable "accepter_owner_id" { type = string
+variable "accepter_owner_id" {
+  type = string
   default = null
 }
-variable "auto_accept" { type = bool
+variable "auto_accept" {
+  type = bool
   default = false
 }
 resource "aws_vpc_peering_connection" "this" {

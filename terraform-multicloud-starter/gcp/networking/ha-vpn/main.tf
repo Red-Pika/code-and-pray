@@ -5,22 +5,27 @@ terraform {
     random = { source = "hashicorp/random", version = "~> 3.6" }
   }
 }
-provider "google" { project = var.project_id
+provider "google" {
+  project = var.project_id
   region = var.region
 }
-variable "project_id" { type = string
+variable "project_id" {
+  type = string
   description = "GCP project ID"
 }
-variable "region" { type = string
+variable "region" {
+  type = string
   default = "asia-southeast2"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-ha-vpn"
 }
 variable "network_self_link" { type = string }
 variable "peer_gateway_ip_0" { type = string }
 variable "peer_gateway_ip_1" { type = string }
-variable "peer_bgp_asn" { type = number
+variable "peer_bgp_asn" {
+  type = number
   default = 65000
 }
 resource "google_compute_ha_vpn_gateway" "this" {

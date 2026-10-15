@@ -4,16 +4,20 @@ terraform {
 }
 provider "google" {
   project = var.project_id
-  region = var.region }
+  region = var.region
+  }
 variable "project_id" {
   type = string
-  description = "GCP project ID" }
+  description = "GCP project ID"
+  }
 variable "region" {
   type = string
-  default = "asia-southeast2" }
+  default = "asia-southeast2"
+  }
 variable "bucket_name" {
   type = string
-  description = "Globally unique bucket name" }
+  description = "Globally unique bucket name"
+  }
 resource "google_storage_bucket" "this" {
   name = var.bucket_name
   location = "ASIA-SOUTHEAST2"

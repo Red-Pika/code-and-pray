@@ -18,9 +18,10 @@ variable "name" {
   type = string
   default = "starter-allow-https"
   }
-resource "google_compute_network" "this" { name = "${var.name}-vpc"
+resource "google_compute_network" "this" {
+  name = "${var.name}-vpc"
   auto_create_subnetworks = false
-  }
+}
 resource "google_compute_firewall" "https" {
   name = var.name
   network = google_compute_network.this.name

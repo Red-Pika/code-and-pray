@@ -4,15 +4,20 @@ terraform {
     azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
   }
 }
-provider "azurerm" { features {} }
-variable "location" { type = string
+provider "azurerm" {
+  features {}
+}
+variable "location" {
+  type = string
   default = "southeastasia"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-vault"
 }
 variable "tenant_id" { type = string }
-variable "object_id" { type = string
+variable "object_id" {
+  type = string
   description = "Principal object ID that needs vault access"
 }
 resource "azurerm_resource_group" "this" {

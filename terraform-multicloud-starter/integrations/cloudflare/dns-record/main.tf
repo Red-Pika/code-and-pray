@@ -6,13 +6,15 @@ terraform {
 }
 variable "cloudflare_api_token" {
   type = string
-  sensitive = true }
+  sensitive = true
+  }
 variable "zone_id" { type = string }
 variable "record_name" { type = string }
 variable "record_value" { type = string }
 variable "proxied" {
   type = bool
-  default = false }
+  default = false
+  }
 provider "cloudflare" { api_token = var.cloudflare_api_token }
 resource "cloudflare_record" "this" {
   zone_id = var.zone_id

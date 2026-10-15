@@ -4,11 +4,15 @@ terraform {
     azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
   }
 }
-provider "azurerm" { features {} }
-variable "location" { type = string
+provider "azurerm" {
+  features {}
+}
+variable "location" {
+  type = string
   default = "southeastasia"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-aks"
 }
 resource "azurerm_resource_group" "this" {
@@ -36,6 +40,7 @@ resource "azurerm_kubernetes_cluster" "this" {
   }
 }
 output "cluster_id" { value = azurerm_kubernetes_cluster.this.id }
-output "kube_config_raw" { value = azurerm_kubernetes_cluster.this.kube_config_raw
+output "kube_config_raw" {
+  value = azurerm_kubernetes_cluster.this.kube_config_raw
   sensitive = true
 }

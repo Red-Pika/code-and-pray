@@ -1,0 +1,29 @@
+pipeline {
+  agent any
+  options { timestamps() }
+  stages {
+    stage('Checkout') {
+      steps { checkout scm }
+    }
+    stage('Terraform Format') {
+      steps {
+        sh 'terraform fmt -recursive terraform-multicloud-starter'
+      }
+    }
+    stage('Validate AWS Networking') {
+      steps {
+        dir('terraform-multicloud-starter/aws/networking') {
+          sh 'terraform init -backend=false'
+          sh 'terraform validate'
+        }
+      }
+    }
+    stage('Plan Review') {
+      when { branch 'main' }
+      steps {
+        echo 'Run provider-specific plans only after credentials and remote state are configured.'
+        input message: 'Confirm that a reviewed plan is ready before any deployment.'
+      }
+    }
+  }
+}

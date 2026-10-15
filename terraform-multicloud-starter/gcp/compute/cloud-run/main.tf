@@ -27,7 +27,6 @@ variable "container_image" {
 resource "google_cloud_run_v2_service" "this" {
   name = var.service_name
   location = var.region
-  deletion_protection = true
   template {
     scaling {
       min_instance_count = 0

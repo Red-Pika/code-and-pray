@@ -3,9 +3,12 @@ terraform {
   required_providers { azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" } }
 }
 provider "azurerm" { features {} }
-variable "location" { type = string, default = "southeastasia" }
-variable "name" { type = string, default = "starter-nsg" }
-resource "azurerm_resource_group" "this" { name = "${var.name}-rg"; location = var.location }
+variable "location" { type = string
+  default = "southeastasia" }
+variable "name" { type = string
+  default = "starter-nsg" }
+resource "azurerm_resource_group" "this" { name = "${var.name}-rg"
+  location = var.location }
 resource "azurerm_network_security_group" "this" {
   name = var.name
   location = azurerm_resource_group.this.location

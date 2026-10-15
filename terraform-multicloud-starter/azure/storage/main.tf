@@ -7,12 +7,15 @@ provider "azurerm" {
 }
 variable "location" {
   type = string
-  default = "southeastasia" }
+  default = "southeastasia"
+  }
 variable "name" {
   type = string
-  default = "starterstorage" }
+  default = "starterstorage"
+  }
 resource "azurerm_resource_group" "this" { name = "${var.name}-rg"
-  location = var.location }
+  location = var.location
+  }
 resource "azurerm_storage_account" "this" {
   name = var.name
   resource_group_name = azurerm_resource_group.this.name

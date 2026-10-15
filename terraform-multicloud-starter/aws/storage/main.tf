@@ -5,10 +5,12 @@ terraform {
 provider "aws" { region = var.aws_region }
 variable "aws_region" {
   type = string
-  default = "ap-southeast-1" }
+  default = "ap-southeast-1"
+  }
 variable "bucket_name" {
   type = string
-  description = "Globally unique S3 bucket name lowercase letters, numbers and hyphens." }
+  description = "Globally unique S3 bucket name lowercase letters, numbers and hyphens."
+  }
 resource "aws_s3_bucket" "this" { bucket = var.bucket_name }
 resource "aws_s3_bucket_public_access_block" "this" {
   bucket = aws_s3_bucket.this.id

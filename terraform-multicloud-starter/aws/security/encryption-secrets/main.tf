@@ -7,10 +7,12 @@ terraform {
 provider "aws" { region = var.aws_region }
 variable "aws_region" {
   type = string
-  default = "ap-southeast-1" }
+  default = "ap-southeast-1"
+  }
 variable "name" {
   type = string
-  default = "starter-app" }
+  default = "starter-app"
+  }
 resource "aws_kms_key" "this" {
   description = "KMS key for ${var.name}"
   enable_key_rotation = true

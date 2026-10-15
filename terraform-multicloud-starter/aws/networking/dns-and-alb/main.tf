@@ -5,21 +5,26 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-alb"
 }
 variable "vpc_id" { type = string }
 variable "public_subnet_ids" { type = list(string) }
-variable "certificate_arn" { type = string
+variable "certificate_arn" {
+  type = string
   description = "ACM certificate ARN in the same region"
 }
-variable "target_instance_ids" { type = list(string)
+variable "target_instance_ids" {
+  type = list(string)
   default = []
 }
-variable "security_group_ids" { type = list(string)
+variable "security_group_ids" {
+  type = list(string)
   description = "Security groups allowing HTTPS from intended clients"
 }
 resource "aws_lb" "this" {

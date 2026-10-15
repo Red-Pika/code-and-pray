@@ -4,22 +4,27 @@ terraform {
     google = { source = "hashicorp/google", version = "~> 5.0" }
   }
 }
-provider "google" { project = var.project_id
+provider "google" {
+  project = var.project_id
   region = var.region
 }
 variable "project_id" { type = string }
-variable "region" { type = string
+variable "region" {
+  type = string
   default = "asia-southeast2"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-http"
 }
-variable "backend_instance_group" { type = string
+variable "backend_instance_group" {
+  type = string
   description = "Self-link of a managed instance group"
 }
 resource "google_compute_health_check" "this" {
   name = "${var.name}-hc"
-  http_health_check { port = 80
+  http_health_check {
+    port = 80
     request_path = "/"
   }
 }

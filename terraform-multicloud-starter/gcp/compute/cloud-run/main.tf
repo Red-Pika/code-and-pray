@@ -6,19 +6,24 @@ terraform {
 }
 provider "google" {
   project = var.project_id
-  region = var.region }
+  region = var.region
+  }
 variable "project_id" {
   type = string
-  description = "GCP project ID" }
+  description = "GCP project ID"
+  }
 variable "region" {
   type = string
-  default = "asia-southeast2" }
+  default = "asia-southeast2"
+  }
 variable "service_name" {
   type = string
-  default = "starter-cloud-run" }
+  default = "starter-cloud-run"
+  }
 variable "container_image" {
   type = string
-  description = "Container image URI" }
+  description = "Container image URI"
+  }
 resource "google_cloud_run_v2_service" "this" {
   name = var.service_name
   location = var.region
@@ -26,7 +31,8 @@ resource "google_cloud_run_v2_service" "this" {
   template {
     scaling {
       min_instance_count = 0
-  max_instance_count = 3 }
+  max_instance_count = 3
+  }
     containers {
       image = var.container_image
       ports { container_port = 8080 }

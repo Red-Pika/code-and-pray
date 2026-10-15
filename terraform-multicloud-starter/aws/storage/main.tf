@@ -3,11 +3,12 @@ terraform {
   required_providers { aws = { source = "hashicorp/aws", version = "~> 5.0" } }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1" }
-variable "bucket_name" { type = string
-  description = "Globally unique S3 bucket name
-  lowercase letters, numbers and hyphens." }
+variable "bucket_name" {
+  type = string
+  description = "Globally unique S3 bucket name lowercase letters, numbers and hyphens." }
 resource "aws_s3_bucket" "this" { bucket = var.bucket_name }
 resource "aws_s3_bucket_public_access_block" "this" {
   bucket = aws_s3_bucket.this.id

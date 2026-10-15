@@ -5,11 +5,14 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1" }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-service" }
-variable "alarm_email" { type = string
+variable "alarm_email" {
+  type = string
   default = "" }
 resource "aws_cloudwatch_log_group" "app" {
   name = "/application/${var.name}"

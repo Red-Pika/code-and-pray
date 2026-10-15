@@ -4,17 +4,21 @@ terraform {
     google = { source = "hashicorp/google", version = "~> 5.0" }
   }
 }
-provider "google" { project = var.project_id
+provider "google" {
+  project = var.project_id
   region = var.region
 }
 variable "project_id" { type = string }
-variable "region" { type = string
+variable "region" {
+  type = string
   default = "asia-southeast2"
 }
-variable "dns_name" { type = string
+variable "dns_name" {
+  type = string
   description = "DNS zone name, e.g. example-com"
 }
-variable "dns_suffix" { type = string
+variable "dns_suffix" {
+  type = string
   description = "DNS suffix with trailing dot, e.g. example.com."
 }
 variable "record_name" { type = string }

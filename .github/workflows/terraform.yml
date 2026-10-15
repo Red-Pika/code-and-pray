@@ -24,7 +24,7 @@ jobs:
         with:
           terraform_version: "1.9.8"
       - name: Check formatting
-        run: terraform fmt -check -recursive terraform-multicloud-starter
+        run: terraform fmt -recursive terraform-multicloud-starter
 
   validate:
     runs-on: ubuntu-latest

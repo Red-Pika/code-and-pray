@@ -4,17 +4,22 @@ terraform {
     azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
   }
 }
-provider "azurerm" { features {} }
-variable "location" { type = string
+provider "azurerm" {
+  features {}
+}
+variable "location" {
+  type = string
   default = "southeastasia"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-ml-workspace"
 }
 variable "storage_account_id" { type = string }
 variable "key_vault_id" { type = string }
 variable "application_insights_id" { type = string }
-variable "container_registry_id" { type = string
+variable "container_registry_id" {
+  type = string
   default = null
 }
 resource "azurerm_resource_group" "this" {

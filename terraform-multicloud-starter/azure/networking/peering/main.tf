@@ -4,8 +4,11 @@ terraform {
     azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
   }
 }
-provider "azurerm" { features {} }
-variable "name" { type = string
+provider "azurerm" {
+  features {}
+}
+variable "name" {
+  type = string
   default = "starter-peering"
 }
 variable "resource_group_name" { type = string }

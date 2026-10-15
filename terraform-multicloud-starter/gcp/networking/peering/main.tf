@@ -4,14 +4,17 @@ terraform {
     google = { source = "hashicorp/google", version = "~> 5.0" }
   }
 }
-provider "google" { project = var.project_id
+provider "google" {
+  project = var.project_id
   region = var.region
 }
 variable "project_id" { type = string }
-variable "region" { type = string
+variable "region" {
+  type = string
   default = "asia-southeast2"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-peering"
 }
 variable "local_network_self_link" { type = string }

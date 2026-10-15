@@ -4,7 +4,9 @@ terraform {
     azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
   }
 }
-provider "azurerm" { features {} }
+provider "azurerm" {
+  features {}
+}
 variable "resource_group_name" { type = string }
 variable "dns_zone_name" { type = string }
 variable "record_name" { type = string }

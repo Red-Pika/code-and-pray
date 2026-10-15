@@ -4,19 +4,24 @@ terraform {
 }
 provider "google" {
   project = var.project_id
-  region = var.region }
+  region = var.region
+  }
 variable "project_id" {
   type = string
-  description = "GCP project ID" }
+  description = "GCP project ID"
+  }
 variable "region" {
   type = string
-  default = "asia-southeast2" }
+  default = "asia-southeast2"
+  }
 variable "name" {
   type = string
-  default = "starter-network" }
+  default = "starter-network"
+  }
 resource "google_compute_network" "this" {
   name = var.name
-  auto_create_subnetworks = false }
+  auto_create_subnetworks = false
+  }
 resource "google_compute_subnetwork" "private" {
   name = "${var.name}-private"
   ip_cidr_range = "10.50.1.0/24"

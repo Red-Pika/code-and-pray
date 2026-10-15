@@ -5,13 +5,16 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1"
 }
-variable "role_name" { type = string
+variable "role_name" {
+  type = string
   default = "starter-workload-role"
 }
-variable "trusted_service" { type = string
+variable "trusted_service" {
+  type = string
   default = "ec2.amazonaws.com"
 }
 resource "aws_iam_role" "this" {

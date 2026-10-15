@@ -28,8 +28,9 @@ resource "google_billing_budget" "monthly" {
   amount {
     specified_amount {
       currency_code = "USD"
-    units = tostring(floor(var.budget_amount_usd))
-  } }
+      units = tostring(floor(var.budget_amount_usd))
+    }
+  }
   threshold_rules {
     threshold_percent = 0.8
     spend_basis = "CURRENT_SPEND"

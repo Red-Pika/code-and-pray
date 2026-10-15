@@ -2,10 +2,14 @@ terraform {
   required_version = ">= 1.5.0"
   required_providers { azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" } }
 }
-provider "azurerm" { features {} }
-variable "location" { type = string
+provider "azurerm" {
+  features {}
+}
+variable "location" {
+  type = string
   default = "southeastasia" }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-nsg" }
 resource "azurerm_resource_group" "this" { name = "${var.name}-rg"
   location = var.location }

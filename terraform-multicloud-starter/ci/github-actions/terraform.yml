@@ -1,0 +1,58 @@
+name: Terraform validation
+
+on:
+  pull_request:
+    paths:
+      - "terraform-multicloud-starter/**/*.tf"
+      - ".github/workflows/terraform.yml"
+  push:
+    branches: [main, terraform-multicloud-starter]
+    paths:
+      - "terraform-multicloud-starter/**/*.tf"
+
+permissions:
+  contents: read
+
+jobs:
+  fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+      - name: Check formatting
+        run: terraform fmt -check -recursive terraform-multicloud-starter
+
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - aws/networking
+          - aws/storage
+          - aws/security
+          - aws/containers/registry
+          - aws/compute/ecs-fargate
+          - azure/networking
+          - azure/storage
+          - azure/security
+          - azure/containers/registry
+          - azure/compute/container-app
+          - gcp/networking
+          - gcp/storage
+          - gcp/security
+          - gcp/containers/registry
+          - gcp/compute/cloud-run
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+      - name: Initialize module
+        working-directory: terraform-multicloud-starter/${{ matrix.module }}
+        run: terraform init -backend=false
+      - name: Validate module
+        working-directory: terraform-multicloud-starter/${{ matrix.module }}
+        run: terraform validate

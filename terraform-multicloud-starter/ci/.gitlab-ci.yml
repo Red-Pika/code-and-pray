@@ -1,0 +1,31 @@
+stages:
+  - fmt
+  - validate
+
+variables:
+  TF_IN_AUTOMATION: "true"
+  TF_INPUT: "false"
+  TF_PLUGIN_CACHE_DIR: "$CI_PROJECT_DIR/.terraform.d/plugin-cache"
+
+fmt:
+  stage: fmt
+  image: hashicorp/terraform:1.9.8
+  script:
+    - terraform fmt -recursive terraform-multicloud-starter
+
+validate:
+  stage: validate
+  image: hashicorp/terraform:1.9.8
+  script:
+    - mkdir -p "$TF_PLUGIN_CACHE_DIR"
+    - |
+      set -eu
+      find terraform-multicloud-starter -name '*.tf' -not -path '*/.terraform/*' -printf '%h\n' | sort -u > /tmp/terraform-roots.txt
+      while IFS= read -r dir; do
+        echo "Validating $dir"
+        terraform -chdir="$dir" init -backend=false -input=false
+        terraform -chdir="$dir" validate
+      done < /tmp/terraform-roots.txt
+
+# No apply job is configured. Production apply must use protected environments,
+# remote state, cloud credentials, and an explicit approval gate.

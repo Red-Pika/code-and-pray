@@ -53,3 +53,24 @@ Terraform CLI was not available in the build environment, and no cloud credentia
 ## Scope
 
 See `docs/coverage-matrix.md` for mapping the 86 requested capabilities to examples, shared patterns, or backlog items. Some capabilities (VPN, multi-cloud orchestration, SaaS integrations, and self-service portals) require additional provider-specific modules and architecture decisions.
+
+
+## Expanded capability modules
+
+The branch now has separate examples for the 86-item scope documented in [the coverage matrix](docs/coverage-matrix.md). New example roots include:
+
+- Networking: VPC/VNet, public/private subnet patterns, NAT, peering, site-to-site/HA VPN, load balancers, DNS
+- Storage: object storage lifecycle and encrypted block disks
+- Security: security groups/NSGs/firewalls, KMS/Key Vault/Secret Manager, certificates, backup vaults
+- Compute and containers: EC2/VM building blocks, EKS/AKS/GKE, ECS/Fargate, Azure Container Apps, Cloud Run, registries
+- Data: RDS, Azure SQL, Cloud SQL, Glue Catalog, Data Factory, BigQuery dataset
+- Operations: monitoring/logging/alerts, budgets, policy-as-code, CI/CD, environment/state/drift/import guidance
+- Integrations: Cloudflare DNS, Datadog monitor, GitHub repository
+
+Each directory containing a `.tf` file is an independent Terraform root. Initialize and validate modules separately. Do not run `terraform apply` from the repository root.
+
+## Validation and completeness
+
+GitHub Actions is configured to format and validate the independent root modules. Check the [workflow run history](https://github.com/Red-Pika/code-and-pray/actions/workflows/terraform.yml) for actual results. A passing `terraform validate` proves configuration structure/provider schema only; it does not verify cloud permissions, quotas, runtime behavior, security posture, or cost.
+
+The 86-item list is the scope baseline, not a claim that every item is production-complete. Hybrid networking, multi-region failover, DR RPO/RTO, enterprise workload sizing, self-service portals, and migration/cutover plans require environment-specific design and testing.

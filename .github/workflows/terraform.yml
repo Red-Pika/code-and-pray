@@ -1,0 +1,44 @@
+name: Terraform format and validation
+
+on:
+  pull_request:
+    paths:
+      - "terraform-multicloud-starter/**/*.tf"
+      - ".github/workflows/terraform.yml"
+  push:
+    branches:
+      - main
+      - terraform-multicloud-starter
+    paths:
+      - "terraform-multicloud-starter/**/*.tf"
+      - ".github/workflows/terraform.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    env:
+      TF_IN_AUTOMATION: "true"
+      TF_PLUGIN_CACHE_DIR: /home/runner/.terraform.d/plugin-cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+      - name: Prepare provider cache
+        run: mkdir -p "$TF_PLUGIN_CACHE_DIR"
+      - name: Format and parse all Terraform files
+        run: terraform fmt -recursive terraform-multicloud-starter
+      - name: Initialize and validate each root module
+        shell: bash
+        run: |
+          set -euo pipefail
+          find terraform-multicloud-starter -name '*.tf' -not -path '*/.terraform/*' -printf '%h\n' | sort -u > /tmp/terraform-roots.txt
+          while IFS= read -r dir; do
+            echo "::group::Validating $dir"
+            terraform -chdir="$dir" init -backend=false -input=false
+            terraform -chdir="$dir" validate
+            echo "::endgroup::"
+          done < /tmp/terraform-roots.txt

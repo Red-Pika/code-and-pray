@@ -4,16 +4,20 @@ terraform {
     google = { source = "hashicorp/google", version = "~> 5.0" }
   }
 }
-provider "google" { project = var.project_id
+provider "google" {
+  project = var.project_id
   region = var.region
 }
-variable "project_id" { type = string
+variable "project_id" {
+  type = string
   description = "GCP project ID"
 }
-variable "region" { type = string
+variable "region" {
+  type = string
   default = "asia-southeast2"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-sql"
 }
 resource "google_sql_database_instance" "this" {

@@ -7,12 +7,15 @@ provider "azurerm" {
 }
 variable "location" {
   type = string
-  default = "southeastasia" }
+  default = "southeastasia"
+  }
 variable "name" {
   type = string
-  default = "starter-network" }
+  default = "starter-network"
+  }
 resource "azurerm_resource_group" "this" { name = "${var.name}-rg"
-  location = var.location }
+  location = var.location
+  }
 resource "azurerm_virtual_network" "this" {
   name = "${var.name}-vnet"
   address_space = ["10.40.0.0/16"]

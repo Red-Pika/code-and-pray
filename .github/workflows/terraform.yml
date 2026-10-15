@@ -1,0 +1,79 @@
+name: Terraform validation
+
+on:
+  pull_request:
+    paths:
+      - "terraform-multicloud-starter/**/*.tf"
+      - ".github/workflows/terraform.yml"
+  push:
+    branches:
+      - main
+      - terraform-multicloud-starter
+    paths:
+      - "terraform-multicloud-starter/**/*.tf"
+
+permissions:
+  contents: read
+
+jobs:
+  fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+      - name: Check formatting
+        run: terraform fmt -check -recursive terraform-multicloud-starter
+
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - aws/networking
+          - aws/networking/edge-and-nat
+          - aws/networking/peering
+          - aws/storage
+          - aws/storage/block-and-lifecycle
+          - aws/security
+          - aws/security/encryption-secrets
+          - aws/identity/iam-role
+          - aws/database/rds-ha
+          - aws/containers/registry
+          - aws/compute/ecs-fargate
+          - aws/observability/alarms-and-logs
+          - azure/networking
+          - azure/networking/edge-and-nat
+          - azure/networking/peering
+          - azure/storage
+          - azure/storage/block-and-lifecycle
+          - azure/security
+          - azure/identity/managed-identity
+          - azure/database/azure-sql
+          - azure/containers/registry
+          - azure/compute/container-app
+          - azure/observability/monitoring
+          - gcp/networking
+          - gcp/networking/edge-and-nat
+          - gcp/networking/peering
+          - gcp/storage
+          - gcp/storage/block-and-lifecycle
+          - gcp/security
+          - gcp/identity/service-account
+          - gcp/database/cloud-sql-ha
+          - gcp/containers/registry
+          - gcp/compute/cloud-run
+          - gcp/observability/monitoring
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+      - name: Initialize module
+        working-directory: terraform-multicloud-starter/${{ matrix.module }}
+        run: terraform init -backend=false
+      - name: Validate module
+        working-directory: terraform-multicloud-starter/${{ matrix.module }}
+        run: terraform validate

@@ -3,9 +3,12 @@ terraform {
   required_providers { azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" } }
 }
 provider "azurerm" { features {} }
-variable "location" { type = string, default = "southeastasia" }
-variable "name" { type = string, default = "starter-network" }
-resource "azurerm_resource_group" "this" { name = "${var.name}-rg"; location = var.location }
+variable "location" { type = string
+  default = "southeastasia" }
+variable "name" { type = string
+  default = "starter-network" }
+resource "azurerm_resource_group" "this" { name = "${var.name}-rg"
+  location = var.location }
 resource "azurerm_virtual_network" "this" {
   name = "${var.name}-vnet"
   address_space = ["10.40.0.0/16"]

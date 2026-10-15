@@ -4,11 +4,15 @@ terraform {
     azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
   }
 }
-provider "azurerm" { features {} }
-variable "location" { type = string
+provider "azurerm" {
+  features {}
+}
+variable "location" {
+  type = string
   default = "southeastasia"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-identity"
 }
 resource "azurerm_resource_group" "this" {

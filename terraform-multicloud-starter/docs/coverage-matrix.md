@@ -30,7 +30,7 @@ Legend: **Example** = representative configuration; **Pattern** = guidance/CI/do
 | 24 | Kubernetes resources | Backlog | Requires Kubernetes/Helm provider design |
 | 25 | Container registry | Backlog | ECR / ACR / Artifact Registry |
 | 26 | Amazon ECS | Backlog | Requires workload design |
-| 27 | AWS Fargate | Backlog | ECS/Fargate workload module |
+| 27 | AWS Fargate | Example | `aws/compute/ecs-fargate` |
 | 28 | Autoscaling group | Example | EKS node group pattern; general ASG backlog |
 | 29 | IAM users/roles/policies | Example | EKS role patterns; dedicated modules backlog |
 | 30 | Access and permissions | Pattern | Least-privilege review required |
@@ -49,7 +49,7 @@ Legend: **Example** = representative configuration; **Pattern** = guidance/CI/do
 | 43 | GCP cloud management | Example | GCP roots |
 | 44 | Multi-cloud | Pattern | Separate roots and CI; no atomic cross-cloud transaction |
 | 45 | Hybrid cloud | Backlog | Requires connectivity, identity, DNS, and routing design |
-| 46 | Cloudflare | Backlog | Provider credentials and zone IDs required |
+| 46 | Cloudflare | Example | `integrations/cloudflare/dns-record`; API token and zone inputs required |
 | 47 | GitHub resources | Pattern | GitHub Actions example; provider resources backlog |
 | 48 | Datadog resources | Backlog | API/app keys and service configuration required |
 | 49 | SaaS providers | Pattern | Add provider modules after requirements are defined |
@@ -77,17 +77,17 @@ Legend: **Example** = representative configuration; **Pattern** = guidance/CI/do
 | 71 | Cloud migration | Backlog | Needs source inventory and migration plan |
 | 72 | Certificates | Backlog | ACM / Key Vault / Certificate Manager |
 | 73 | Observability | Example | AWS CloudWatch starter; Azure/GCP extension backlog |
-| 74 | Cost governance | Pattern | Tags/labels and cost-control notes |
-| 75 | Three-tier app | Backlog | Combine network, compute, LB, DB after app inputs |
+| 74 | Cost governance | Example | AWS Budgets, Azure subscription budget, GCP billing budget; alert targets and billing access need setup |
+| 75 | Three-tier app | Pattern | `docs/three-tier-and-dr.md` explains composition; application-specific composition remains to be parameterized |
 | 76 | Microservices | Pattern | Kubernetes roots provide cluster foundation only |
 | 77 | Web app | Pattern | Infrastructure building blocks included |
 | 78 | Enterprise app | Backlog | Requires sizing, HA/DR, security, compliance inputs |
 | 79 | AI/ML workloads | Backlog | GPU, IAM, storage, networking, quota requirements |
-| 80 | Data engineering | Backlog | Managed data services and pipeline design needed |
+| 80 | Data engineering | Example | Glue Catalog, Azure Data Factory, BigQuery dataset; pipeline and access policies are workload-specific |
 | 81 | Network/security resources | Example | Provider networking roots |
 | 82 | Sandbox automation | Pattern | Reuse roots with short-lived state and budget controls |
 | 83 | Modules/workspaces | Pattern | Guidance; separate state recommended per environment |
-| 84 | Policy as code | Example | `policies/` starter guardrail |
+| 84 | Policy as code | Example | `policies/terraform-checks.rego` starter guardrails |
 | 85 | Infrastructure testing | Pattern | CI fmt/validate; integration tests need credentials |
 | 86 | Consistent IaC management | Pattern | Formatting, validation, naming, CI examples |
 

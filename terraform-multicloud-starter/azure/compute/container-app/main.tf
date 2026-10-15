@@ -9,13 +9,16 @@ provider "azurerm" {
 }
 variable "location" {
   type = string
-  default = "southeastasia" }
+  default = "southeastasia"
+  }
 variable "name" {
   type = string
-  default = "starter-container-app" }
+  default = "starter-container-app"
+  }
 variable "container_image" {
   type = string
-  description = "Container image URI" }
+  description = "Container image URI"
+  }
 resource "azurerm_resource_group" "this" {
   name = "${var.name}-rg"
   location = var.location
@@ -54,7 +57,8 @@ resource "azurerm_container_app" "this" {
     transport = "auto"
     traffic_weight {
       percentage = 100
-  latest_revision = true }
+  latest_revision = true
+  }
   }
 }
 output "container_app_id" { value = azurerm_container_app.this.id }

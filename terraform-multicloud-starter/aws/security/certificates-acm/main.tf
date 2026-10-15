@@ -5,14 +5,17 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1"
 }
 variable "domain_name" { type = string }
-variable "subject_alternative_names" { type = list(string)
+variable "subject_alternative_names" {
+  type = list(string)
   default = []
 }
-variable "route53_zone_id" { type = string
+variable "route53_zone_id" {
+  type = string
   description = "Hosted zone ID for DNS validation"
 }
 resource "aws_acm_certificate" "this" {

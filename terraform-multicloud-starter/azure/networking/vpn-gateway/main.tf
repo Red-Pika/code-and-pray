@@ -4,21 +4,27 @@ terraform {
     azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
   }
 }
-provider "azurerm" { features {} }
-variable "location" { type = string
+provider "azurerm" {
+  features {}
+}
+variable "location" {
+  type = string
   default = "southeastasia"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-vpn"
 }
 variable "resource_group_name" { type = string }
 variable "vnet_id" { type = string }
-variable "gateway_subnet_id" { type = string
+variable "gateway_subnet_id" {
+  type = string
   description = "Subnet named GatewaySubnet, typically /27 or larger"
 }
 variable "on_prem_public_ip" { type = string }
 variable "on_prem_address_space" { type = list(string) }
-variable "shared_key" { type = string
+variable "shared_key" {
+  type = string
   sensitive = true
 }
 resource "azurerm_public_ip" "this" {

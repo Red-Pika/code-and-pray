@@ -5,13 +5,16 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1"
 }
-variable "cluster_name" { type = string
+variable "cluster_name" {
+  type = string
   default = "starter-eks"
 }
-variable "private_subnet_ids" { type = list(string)
+variable "private_subnet_ids" {
+  type = list(string)
   description = "Private subnet IDs across at least two AZs"
 }
 resource "aws_iam_role" "cluster" {

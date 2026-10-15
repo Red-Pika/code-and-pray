@@ -4,14 +4,17 @@ terraform {
     google = { source = "hashicorp/google", version = "~> 5.0" }
   }
 }
-provider "google" { project = var.project_id
+provider "google" {
+  project = var.project_id
   region = var.region
 }
 variable "project_id" { type = string }
-variable "region" { type = string
+variable "region" {
+  type = string
   default = "asia-southeast2"
 }
-variable "dataset_id" { type = string
+variable "dataset_id" {
+  type = string
   default = "starter_analytics"
 }
 resource "google_bigquery_dataset" "this" {

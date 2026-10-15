@@ -5,10 +5,12 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1"
 }
-variable "database_name" { type = string
+variable "database_name" {
+  type = string
   default = "starter_catalog"
 }
 resource "aws_glue_catalog_database" "this" {

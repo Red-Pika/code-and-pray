@@ -5,13 +5,16 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1"
 }
-variable "bucket_name" { type = string
+variable "bucket_name" {
+  type = string
   description = "Globally unique S3 bucket name"
 }
-variable "availability_zone" { type = string
+variable "availability_zone" {
+  type = string
   default = "ap-southeast-1a"
 }
 resource "aws_s3_bucket" "data" { bucket = var.bucket_name }
@@ -25,7 +28,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "data" {
     id = "transition-and-expire"
     status = "Enabled"
     filter { prefix = "" }
-    transition { days = 30
+    transition {
+      days = 30
       storage_class = "STANDARD_IA"
     }
     expiration { days = 365 }

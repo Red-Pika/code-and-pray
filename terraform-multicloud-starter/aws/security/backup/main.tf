@@ -15,7 +15,7 @@ variable "name" {
 }
 resource "aws_backup_vault" "this" {
   name = var.name
-  encryption_key_arn = null
+  # Uses the AWS Backup default encryption key unless kms_key_arn is configured.
 }
 resource "aws_backup_plan" "this" {
   name = var.name

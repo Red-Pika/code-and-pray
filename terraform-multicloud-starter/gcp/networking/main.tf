@@ -2,15 +2,20 @@ terraform {
   required_version = ">= 1.5.0"
   required_providers { google = { source = "hashicorp/google", version = "~> 5.0" } }
 }
-provider "google" { project = var.project_id
+provider "google" {
+  project = var.project_id
   region = var.region }
-variable "project_id" { type = string
+variable "project_id" {
+  type = string
   description = "GCP project ID" }
-variable "region" { type = string
+variable "region" {
+  type = string
   default = "asia-southeast2" }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-network" }
-resource "google_compute_network" "this" { name = var.name
+resource "google_compute_network" "this" {
+  name = var.name
   auto_create_subnetworks = false }
 resource "google_compute_subnetwork" "private" {
   name = "${var.name}-private"

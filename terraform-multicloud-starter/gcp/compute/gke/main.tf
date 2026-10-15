@@ -4,22 +4,28 @@ terraform {
     google = { source = "hashicorp/google", version = "~> 5.0" }
   }
 }
-provider "google" { project = var.project_id
+provider "google" {
+  project = var.project_id
   region = var.region
 }
-variable "project_id" { type = string
+variable "project_id" {
+  type = string
   description = "GCP project ID"
 }
-variable "region" { type = string
+variable "region" {
+  type = string
   default = "asia-southeast2"
 }
-variable "cluster_name" { type = string
+variable "cluster_name" {
+  type = string
   default = "starter-gke"
 }
-variable "network" { type = string
+variable "network" {
+  type = string
   description = "VPC self-link"
 }
-variable "subnetwork" { type = string
+variable "subnetwork" {
+  type = string
   description = "Subnet self-link"
 }
 resource "google_container_cluster" "this" {

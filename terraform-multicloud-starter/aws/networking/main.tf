@@ -3,8 +3,10 @@ terraform {
   required_providers { aws = { source = "hashicorp/aws", version = "~> 5.0" } }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string, default = "ap-southeast-1" }
-variable "name" { type = string, default = "starter-network" }
+variable "aws_region" { type = string
+  default = "ap-southeast-1" }
+variable "name" { type = string
+  default = "starter-network" }
 resource "aws_vpc" "this" {
   cidr_block = "10.20.0.0/16"
   enable_dns_support = true

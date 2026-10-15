@@ -4,12 +4,16 @@ terraform {
     azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
   }
 }
-provider "azurerm" { features {} }
+provider "azurerm" {
+  features {}
+}
 variable "subscription_id" { type = string }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "terraform-monthly-budget"
 }
-variable "amount" { type = number
+variable "amount" {
+  type = number
   default = 100
 }
 resource "azurerm_consumption_budget_subscription" "monthly" {

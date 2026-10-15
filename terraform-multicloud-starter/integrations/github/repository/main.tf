@@ -4,9 +4,12 @@ terraform {
     github = { source = "integrations/github", version = "~> 6.0" }
   }
 }
-variable "github_token" { type = string; sensitive = true }
-variable "repository_name" { type = string; default = "terraform-managed-example" }
-variable "description" { type = string; default = "Repository managed by Terraform" }
+variable "github_token" { type = string
+  sensitive = true }
+variable "repository_name" { type = string
+  default = "terraform-managed-example" }
+variable "description" { type = string
+  default = "Repository managed by Terraform" }
 provider "github" { token = var.github_token }
 resource "github_repository" "this" {
   name = var.repository_name

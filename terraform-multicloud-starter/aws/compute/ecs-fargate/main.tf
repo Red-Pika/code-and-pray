@@ -5,19 +5,25 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1" }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-fargate" }
-variable "container_image" { type = string
+variable "container_image" {
+  type = string
   description = "Container image URI" }
-variable "subnet_ids" { type = list(string)
+variable "subnet_ids" {
+  type = list(string)
   description = "Private subnet IDs" }
-variable "security_group_ids" { type = list(string)
+variable "security_group_ids" {
+  type = list(string)
   description = "Task security groups" }
 resource "aws_ecs_cluster" "this" {
   name = var.name
-  setting { name = "containerInsights"
+  setting {
+    name = "containerInsights"
   value = "enabled" }
 }
 resource "aws_iam_role" "execution" {

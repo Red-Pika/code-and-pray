@@ -5,10 +5,12 @@ terraform {
 provider "aws" { region = var.aws_region }
 variable "aws_region" {
   type = string
-  default = "ap-southeast-1" }
+  default = "ap-southeast-1"
+  }
 variable "name" {
   type = string
-  default = "starter-network" }
+  default = "starter-network"
+  }
 resource "aws_vpc" "this" {
   cidr_block = "10.20.0.0/16"
   enable_dns_support = true

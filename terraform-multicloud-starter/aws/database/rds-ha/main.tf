@@ -5,19 +5,24 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "ap-southeast-1"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-db"
 }
-variable "private_subnet_ids" { type = list(string)
+variable "private_subnet_ids" {
+  type = list(string)
   description = "At least two private subnet IDs in different AZs"
 }
-variable "vpc_security_group_ids" { type = list(string)
+variable "vpc_security_group_ids" {
+  type = list(string)
   description = "Database security groups; allow inbound only from application tier"
 }
-variable "master_username" { type = string
+variable "master_username" {
+  type = string
   default = "dbadmin"
 }
 resource "aws_db_subnet_group" "this" {

@@ -19,11 +19,14 @@ variable "certificate_arn" { type = string
 variable "target_instance_ids" { type = list(string)
   default = []
 }
+variable "security_group_ids" { type = list(string)
+  description = "Security groups allowing HTTPS from intended clients"
+}
 resource "aws_lb" "this" {
   name = var.name
   internal = false
   load_balancer_type = "application"
-  security_groups = []
+  security_groups = var.security_group_ids
   subnets = var.public_subnet_ids
   enable_deletion_protection = true
 }

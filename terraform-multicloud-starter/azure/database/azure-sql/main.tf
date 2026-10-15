@@ -4,17 +4,23 @@ terraform {
     azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
   }
 }
-provider "azurerm" { features {} }
-variable "location" { type = string
+provider "azurerm" {
+  features {}
+}
+variable "location" {
+  type = string
   default = "southeastasia"
 }
-variable "name" { type = string
+variable "name" {
+  type = string
   default = "starter-sql"
 }
-variable "administrator_login" { type = string
+variable "administrator_login" {
+  type = string
   default = "sqladminuser"
 }
-variable "administrator_password" { type = string
+variable "administrator_password" {
+  type = string
   sensitive = true
   description = "Inject from a secret store; never commit this value"
 }

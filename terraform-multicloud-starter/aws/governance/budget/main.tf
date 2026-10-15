@@ -5,13 +5,16 @@ terraform {
   }
 }
 provider "aws" { region = var.aws_region }
-variable "aws_region" { type = string
+variable "aws_region" {
+  type = string
   default = "us-east-1"
 }
-variable "monthly_budget_usd" { type = number
+variable "monthly_budget_usd" {
+  type = number
   default = 100
 }
-variable "notification_email" { type = string
+variable "notification_email" {
+  type = string
   description = "Email address for budget alerts"
 }
 resource "aws_budgets_budget" "monthly" {
